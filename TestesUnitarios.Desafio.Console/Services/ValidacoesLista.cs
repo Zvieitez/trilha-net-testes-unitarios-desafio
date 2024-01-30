@@ -1,32 +1,54 @@
 namespace TestesUnitarios.Desafio.Console.Services
 {
     public class ValidacoesLista
-    {
-        public List<int> RemoverNumerosNegativos(List<int> lista)
+    {   
+        private static void VerificarListaNula(List<int> lista)
         {
-            var listaSemNegativos = lista.Where(x => x > 0);
-            return listaSemNegativos.ToList();
+            if (lista == null)
+            {
+                throw new ArgumentNullException("A lista não pode ser nula.", nameof(lista));
+            }
         }
 
-        public bool ListaContemDeterminadoNumero(List<int> lista, int numero)
+        public List<int> RemoverNumerosNegativos(List<int> lista)
         {
-            var contem = lista.Contains(numero);
-            return contem;
+            VerificarListaNula(lista);
+
+            return lista.Where(x => x > 0).ToList(); 
+        }
+
+        public bool ListaContemDeterminadoNumero(List<int> lista, int numero) 
+        {
+            VerificarListaNula(lista);
+
+            return lista.Contains(numero);                                  
+        }
+
+        public bool NaoContemNumeroNaLista(List<int> lista, int numero)
+        {
+            VerificarListaNula(lista);
+
+            return !lista.Contains(numero);
         }
 
         public List<int> MultiplicarNumerosLista(List<int> lista, int numero)
         {
-            var listaMultiplicada = lista.Select(x => x * numero).ToList();
-            return listaMultiplicada;
+            VerificarListaNula(lista);
+
+            return lista.Select(x => x * numero).ToList();
         }
 
         public int RetornarMaiorNumeroLista(List<int> lista)
         {
+            VerificarListaNula(lista);
+
             return lista.Max();
         }
 
         public int RetornarMenorNumeroLista(List<int> lista)
         {
+            VerificarListaNula(lista);
+            
             return lista.Min();
         }
     }

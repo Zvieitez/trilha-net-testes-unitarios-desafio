@@ -4,49 +4,63 @@ namespace TestesUnitarios.Desafio.Tests;
 
 public class ValidacoesStringTests
 {
-    private ValidacoesString _validacoes = new ValidacoesString();
+    private ValidacoesString validacoes = new();
 
     [Fact]
-    public void DeveRetornar6QuantidadeCaracteresDaPalavraMatrix()
+    public void DeveRetornarQuantidadeCaracteresDeDetrminadaPalavra()
     {
-        var texto = "Matrix"; 
-        var resultadoEsperado = 6;
+        var texto = "Avanade"; 
+        var resultadoEsperado = 7;
 
-        var resultado = _validacoes.RetornarQuantidadeCaracteres(texto);
+        var sut = validacoes.RetornarQuantidadeCaracteres(texto);
 
-        Assert.Equal(resultadoEsperado, resultado);
-    }
-
-    [Fact]
-    public void DeveContemAPalavraQualquerNoTexto()
-    {
-        var texto = "Esse é um texto qualquer";
-        var textoProcurado = "qualquer";
-
-        var resultado = _validacoes.ContemCaractere(texto, textoProcurado);
-
-        Assert.True(resultado);
+        Assert.Equal(resultadoEsperado, sut);
     }
 
     [Fact]
-    public void NaoDeveConterAPalavraTesteNoTexto()
+    public void DeveConterTextoProcurado()
     {
-        var texto = "Esse é um texto qualquer";
-        var textoProcurado = "teste";
+        var texto = "Ajudamos as organizações a conquistar o essencial";
+        var textoProcurado = "essencial";
 
-        var resultado = _validacoes.ContemCaractere(texto, textoProcurado);
+        var sut = validacoes.ContemTexto(texto, textoProcurado);
 
-        Assert.False(resultado);
+        Assert.True(sut);
     }
 
-     [Fact]
-    public void TextoDeveTerminarComAPalavraProcurado()
+    [Fact]
+    public void NaoDeveConterTextoProcurado()
     {
-        var texto = "Começo, meio e fim do texto procurado";
-        var textoProcurado = "procurado"; 
+        var texto = "Nós definimos o essencial";
+        var textoProcurado = "Avanade";
 
-        var resultado = _validacoes.TextoTerminaCom(texto, textoProcurado);
+        var sut = validacoes.ContemTexto(texto, textoProcurado);
 
-        Assert.True(resultado);
+        Assert.False(sut);
     }
+
+    [Fact]
+    public void DeveTerminarTextoProcurado()
+    {
+        var texto = "Nós fortalecemos o que é importante";
+        var textoProcurado = "importante"; 
+
+        var sut = validacoes.TextoTerminaCom(texto, textoProcurado);
+
+        Assert.True(sut);
+    }
+    
+    [Fact]
+    public void NaoDeveTerminarTextoProcurado()
+    {
+        var texto = "Nós fazemos o essencial";
+        var textoProcurado = "Avanade"; 
+
+        var sut = validacoes.TextoTerminaCom(texto, textoProcurado);
+
+        Assert.False(sut);
+    }
+
 }
+
+ 

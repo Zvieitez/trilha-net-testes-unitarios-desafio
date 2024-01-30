@@ -2,22 +2,35 @@ namespace TestesUnitarios.Desafio.Console.Services
 {
     public class ValidacoesString
     {
-        public int RetornarQuantidadeCaracteres(string texto)
+        private static void VerificarNulo(string frase)
         {
-            var numeroCaracteres = texto.Length;
-            return numeroCaracteres;
+            if (frase == null)
+            {
+                throw new ArgumentNullException(nameof(frase));
+            }
         }
 
-        public bool ContemCaractere(string texto, string textoProcurado)
+        public int RetornarQuantidadeCaracteres(string texto)
         {
-            var contem = texto.Contains(textoProcurado);
-            return contem;
+            VerificarNulo(texto);
+
+            return texto.Length;
+        }
+
+        public bool ContemTexto(string texto, string textoProcurado)
+        {
+            VerificarNulo(texto);
+            VerificarNulo(textoProcurado);
+
+            return texto.Contains(textoProcurado);
         }
 
         public bool TextoTerminaCom(string texto, string textoProcurado)
         {
-            var termina = texto.EndsWith(textoProcurado);
-            return termina;
+            VerificarNulo(texto);
+            VerificarNulo(textoProcurado);
+
+            return texto.EndsWith(textoProcurado);
         }
     }
 }
