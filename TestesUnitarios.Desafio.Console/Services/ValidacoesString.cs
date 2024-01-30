@@ -2,7 +2,7 @@ namespace TestesUnitarios.Desafio.Console.Services
 {
     public class ValidacoesString
     {
-        private static void VerificarNulo(string frase)
+        private static void VerificarFraseNula(string frase)
         {
             if (frase == null)
             {
@@ -12,23 +12,23 @@ namespace TestesUnitarios.Desafio.Console.Services
 
         public int RetornarQuantidadeCaracteres(string texto)
         {
-            VerificarNulo(texto);
+            VerificarFraseNula(texto);
 
             return texto.Length;
         }
 
         public bool ContemTexto(string texto, string textoProcurado)
         {
-            VerificarNulo(texto);
-            VerificarNulo(textoProcurado);
+            VerificarFraseNula(texto);
+            VerificarFraseNula(textoProcurado);
 
             return texto.Contains(textoProcurado);
         }
 
         public bool TextoTerminaCom(string texto, string textoProcurado)
         {
-            VerificarNulo(texto);
-            VerificarNulo(textoProcurado);
+            VerificarFraseNula(texto);
+            VerificarFraseNula(textoProcurado);
 
             return texto.EndsWith(textoProcurado);
         }
