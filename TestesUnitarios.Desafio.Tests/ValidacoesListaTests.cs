@@ -18,6 +18,16 @@ public class ValidacoesListaTests
     }
 
     [Fact]
+    public void ValidarListaNaoVazia()
+    {
+        var lista = new List<int> {13};
+
+        var sut = validacoes.VerificarListaVazia(lista);
+
+        Assert.False(sut);
+    }
+
+    [Fact]
     public void ValidarListaNula()
     {
         List<int> lista = null;
@@ -25,6 +35,16 @@ public class ValidacoesListaTests
         var sut = validacoes.VerificarListaNula(lista);
 
         Assert.True(sut);
+    }
+
+    [Fact]
+    public void ValidarListaNaoNula()
+    {
+        var lista = new List<int> {13};
+
+        var sut = validacoes.VerificarListaNula(lista);
+
+        Assert.False(sut);
     }
 
     [Fact] 
