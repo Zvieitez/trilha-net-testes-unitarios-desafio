@@ -7,8 +7,28 @@ public class ValidacoesListaTests
 {
     private ValidacoesLista validacoes = new();
 
+    [Fact]
+    public void ValidarListaVazia()
+    {
+        var lista = new List<int> {};
+
+        var sut = validacoes.VerificarListaVazia(lista);
+
+        Assert.True(sut);
+    }
+
+    [Fact]
+    public void ValidarListaNula()
+    {
+        List<int> lista = null;
+
+        var sut = validacoes.VerificarListaNula(lista);
+
+        Assert.True(sut);
+    }
+
     [Fact] 
-    public void RemoverNumerosNegativosDeUmaLista()
+    public void RemoveNumerosNegativosDeUmaLista()
     {
         var lista = new List<int> { 5, -1, -8, 9 }; 
         var resultadoEsperado = new List<int> {5, 9}; 
